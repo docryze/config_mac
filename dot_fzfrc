@@ -1,0 +1,3 @@
+--disabled
+--walker=file,follow
+--walker-skip=.git,node_modules,.cache,build,.vscode,.log,.jenkins,.oh-my-zsh,.ssh,.nvm,.m2
