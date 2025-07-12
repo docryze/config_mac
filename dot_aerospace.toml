@@ -25,6 +25,12 @@ enable-normalization-opposite-orientation-for-nested-containers = false
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focus-changed = "move-mouse window-lazy-center"
 
+[exec]
+    inherit-env-vars = true
+[exec.env-vars]
+    PATH = ''\
+    '/usr/local/bin/alacritty:'\
+    '${PATH}'
 
 [key-mapping]
     preset = 'qwerty'
@@ -49,6 +55,9 @@ on-focus-changed = "move-mouse window-lazy-center"
 	#alt-shift-t = ['exec-and-forget open -n /Applications/Alacritty.app -e aerospace list-windows --focused | awk -F " | " "{print $1}" | xargs aerospace layout tiling --window-id']
     #alt-shift-t = 'exec-and-forget alacritty -T FLOAT_WIN'
     #alt-shift-t = '''exec-and-forget /bin/bash -c 'alacritty msg create-window --title FLOAT_WIN' '''
+
+    #alt-shift-t = 'exec-and-forget /usr/local/bin/alacritty msg create-window --title FLOAT_WIN'
+    alt-shift-t = 'exec-and-forget alacritty msg create-window --title FLOAT_WIN'
 
 	alt-b = '''exec-and-forget osascript -e '
 	tell application "Google Chrome"
