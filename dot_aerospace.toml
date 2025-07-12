@@ -43,7 +43,11 @@ on-focus-changed = "move-mouse window-lazy-center"
     tell application "Alacritty"
 		activate
 	end tell'
-	'''
+    '''
+
+    # aerospace list-windows --focused | awk -F ' | ' '{print $1}' | xargs aerospace layout tiling --window-id
+	#alt-shift-t = ['exec-and-forget open -n /Applications/Alacritty.app -e aerospace list-windows --focused | awk -F " | " "{print $1}" | xargs aerospace layout tiling --window-id']
+	#alt-shift-t = ['exec-and-forget open -n /Applications/Alacritty.app -e sh -c "echo aaa"']
 
 	alt-b = '''exec-and-forget osascript -e '
 	tell application "Google Chrome"
@@ -108,6 +112,9 @@ on-focus-changed = "move-mouse window-lazy-center"
     cmd-h = [] # Disable "hide application"
     cmd-alt-h = [] # Disable "hide others"
 
+[[on-window-detected]]
+    if.window-title-regex-substring = "FLOAT_WIN"
+    run = 'layout floating'
 
 [[on-window-detected]]
     if.app-id = 'org.alacritty'
