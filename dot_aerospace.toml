@@ -8,11 +8,22 @@
 # Start AeroSpace at login
 start-at-login = true
 
+# Run Sketchybar together with AeroSpace
+# sketchbar has a built-in detection of already running process,
+# so it won't be run twice on AeroSpace restart
+after-startup-command = ['exec-and-forget sketchybar']
+
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+
 enable-normalization-flatten-containers = false
 enable-normalization-opposite-orientation-for-nested-containers = false
 
 # Mouse follows focus when focused monitor changes
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
 
 [key-mapping]
     preset = 'qwerty'
@@ -22,7 +33,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
     inner.vertical =   6
     outer.left =       0
     outer.bottom =     0
-    outer.top =        0 
+    outer.top =        25
     outer.right =      0
 
 [mode.main.binding]
@@ -34,7 +45,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
     #end tell'
     #'''
 
-    alt-q = 'close --quit-if-last-window'
+    alt-shift-q = 'close --quit-if-last-window'
 
     # i3 wraps focus by default
     alt-h = 'focus --boundaries-action wrap-around-the-workspace left'
@@ -95,7 +106,8 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
     if.app-id = 'org.alacritty'
     run = 'move-node-to-workspace 1'
 [[on-window-detected]]
-    if.app-id = 'com.jetbrains.intellij'
+#    if.app-id = 'com.jetbrains.intellij'
+    if.app-name-regex-substring = "IntelliJ IDEA|Code"
     run = 'move-node-to-workspace 2'
 [[on-window-detected]]
     if.app-id = 'com.google.Chrome'
@@ -105,7 +117,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
     run = 'move-node-to-workspace 4'
 [[on-window-detected]]
     if.app-id = 'com.alibaba.DingTalkMac'
-    run = 'move-node-to-workspace 6'
+    run = 'move-node-to-workspace 5'
 
 
 [mode.resize.binding]
