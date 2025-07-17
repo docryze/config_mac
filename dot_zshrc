@@ -64,6 +64,9 @@ export VCPKG_ROOT="$HOME/soft/vcpkg"
 export PATH=$VCPKG_ROOT:$PATH
 
 
+# nnn
+export NNN_FIFO='/tmp/nnn.fifo'
+export NNN_PLUG='f:finder;o:fzopen;p:preview;d:chksum;t:nmount;v:imgview'
 
 # customer command
 gco(){
