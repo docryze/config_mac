@@ -1,0 +1,55 @@
+# vim: set filetype=lf:
+#
+# use enter for shell commands
+map <enter> shell
+
+# show the result of execution of previous commands
+map ` !true
+
+# execute current file (must be executable)
+map x $$f
+map X !$f
+
+# dedicated keys for file opener actions
+map o &mimeopen $f
+map O $mimeopen --ask $f
+
+# mkdir command. See wiki if you want it to select created dir
+map a :push %mkdir<space>
+
+
+
+map f $$EDITOR $(fzf)
+#map f filter
+map p :paste; clear
+
+map <a-r> ${{
+	vidir -- $fx
+}}
+map C ${{
+	$EDITOR ~/.config/lf/lfrc
+	lf -remote "send $id source ~/.config/lf/lfrc"
+}}
+
+cmap <enter> &{{
+    # select and open file
+    if [ "$lf_mode" = filter ]; then
+        lf -remote "send $id :cmd-enter; setfilter; open"
+    else
+        lf -remote "send $id cmd-enter"
+    fi
+}}
+
+cmap <a-n> &{{
+    # go to next file
+    if [ "$lf_mode" = filter ]; then
+        lf -remote "send $id down"
+    fi
+}}
+
+cmap <a-p> &{{
+    # go to previous file
+    if [ "$lf_mode" = filter ]; then
+        lf -remote "send $id up"
+    fi
+}}
