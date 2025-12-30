@@ -27,10 +27,11 @@ on-focus-changed = "move-mouse window-lazy-center"
 
 [exec]
     inherit-env-vars = true
-[exec.env-vars]
-    PATH = ''\
-    '/usr/local/bin/alacritty:'\
-    '${PATH}'
+#[exec.env-vars]
+#    PATH = '''
+#    /usr/local/bin/alacritty:
+#    ${PATH}
+#    '''
 
 [key-mapping]
     preset = 'qwerty'
@@ -127,7 +128,8 @@ on-focus-changed = "move-mouse window-lazy-center"
     run = 'layout floating'
 
 [[on-window-detected]]
-    if.app-id = 'org.alacritty'
+    #if.app-id = 'org.alacritty'
+    if.app-name-regex-substring = "Alacritty|Warp"
     run = 'move-node-to-workspace 1'
 [[on-window-detected]]
 #    if.app-id = 'com.jetbrains.intellij'

@@ -61,19 +61,16 @@ let g:fzf_vim.buffers_options = '--style full --border-label " Open Buffers "'
 
 "coc-vim
 let g:coc_global_extensions = [
-	\ 'coc-marketplace',
-	\ 'coc-lists',
-	\ 'coc-clangd',
-	\ 'coc-cmake',
 	\ 'coc-sh',
 	\ 'coc-vimlsp',
 	\ 'coc-json',
+	\ 'coc-clangd',
+	\ 'coc-cmake',
     \ 'coc-go',
-    \ 'coc-pyright',
+	\ 'coc-pyright',
     \]
 
 set signcolumn=number
-
 
 "========================================config========================================
 set encoding=utf-8
@@ -174,8 +171,8 @@ nmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
-nmap ff :Files
-nmap fb :Buffers
+nmap ff :Files <CR>
+nmap fb :Buffers <CR>
 
 "easymotion
 nmap  ew <Plug>(easymotion-bd-w)
@@ -186,6 +183,7 @@ nmap ej <Plug>(easymotion-j)
 nmap ek <Plug>(easymotion-k)
 nmap el <Plug>(easymotion-lineforward)
 nmap eh <Plug>(easymotion-linebackward)
+
 
 "custom vim map
 "vim - config
@@ -222,6 +220,16 @@ nmap <C-p> :bo terminal<cr>
 tnoremap <C-v> <C-w><S-n>
 tnoremap <C-q> exit<cr>
 "vim - cmake
-tnoremap <C-C> cmake --preset default<cr>
-tnoremap <C-b> cmake --build --preset default<cr>
-tnoremap <C-r> cmake --build --preset default --target clean<cr>
+augroup cmake
+    autocmd!
+    autocmd filetype cpp,hpp,c,h tnoremap <C-C> cmake --preset default<cr>
+    autocmd filetype cpp,hpp,c,h tnoremap <C-b> cmake --build --preset default<cr>
+    autocmd filetype cpp,hpp,c,h tnoremap <C-r> cmake --build --preset default --target clean<cr>
+augroup end
+"vim -go
+augroup go
+    autocmd!
+    autocmd filetype go tnoremap <C-b> go build<cr>
+    autocmd filetype go tnoremap <C-c> go clean<cr>
+    autocmd filetype go tnoremap <C-r> go run .<cr>
+augroup end
