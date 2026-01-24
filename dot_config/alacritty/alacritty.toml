@@ -1,3 +1,5 @@
+[window]
+option_as_alt = "Both"
 [terminal]
 shell = { program = "/bin/zsh", args = ["-l"] }
 [general]
