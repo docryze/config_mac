@@ -116,6 +116,8 @@ export PATH="/usr/local/sbin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# yazi
+alias y="yazi"
 # opencode
 export OPENCODE_DISABLE_LSP_DOWNLOAD=true
 #compdef opencode
