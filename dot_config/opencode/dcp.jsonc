@@ -1,0 +1,58 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Opencode-DCP/opencode-dynamic-context-pruning/master/dcp.schema.json",
+
+    // ===== 压缩阈值（核心优化：百分比替代绝对值，适配大窗口模型）=====
+    "compress": {
+        "mode": "range",
+        // 压缩后 summary tokens 扩展 effective 上限，给额外缓冲
+        "summaryBuffer": true,
+        // 超上限时每 5 次 fetch 提醒一次（默认值，不过于频繁）
+        "nudgeFrequency": 5,
+        // 用户消息后等 15 条消息才加提醒（给 agent 探索足够空间）
+        "iterationNudgeThreshold": 15,
+        // 大窗口模型用 soft（不需要激进压缩）
+        "nudgeForce": "soft",
+
+        // 全局 fallback（适配 Sonnet/Haiku 级 128K 窗口模型）
+        // glm-4.7 / glm-4.6v / glm-4.5-air 等均走此默认
+        "minContextLimit": "45%",
+        "maxContextLimit": "70%",
+
+        // 旗舰模型（256K 窗口）单独提高阈值：
+        // 深度编排/推理需要最大化 context 保留，避免过早压缩打断思路
+        // glm-5.2: 55% ≈ 140K 才开始提醒（原默认 50000 ≈ 20%，过早）
+        //          78% ≈ 200K 强提醒，留 22% ≈ 56K 压缩操作空间
+        "modelMinLimits": {
+            "zhipuai-coding-plan/glm-5.2": "55%",
+            "zhipuai-coding-plan/glm-5-turbo": "50%"
+        },
+        "modelMaxLimits": {
+            "zhipuai-coding-plan/glm-5.2": "78%",
+            "zhipuai-coding-plan/glm-5-turbo": "75%"
+        }
+    },
+
+    // ===== 保护最近轮次（agentic 工作流需要回引近期探索结果）=====
+    "turnProtection": {
+        "enabled": true,
+        "turns": 4
+    },
+
+    // ===== 自动清理策略（保持默认）=====
+    "strategies": {
+        // 去重：相同工具+相同参数只保留最新输出
+        "deduplication": {
+            "enabled": true
+        },
+        // 错误清理：4 轮后裁剪报错工具调用的输入（保留错误消息本身）
+        "purgeErrors": {
+            "enabled": true,
+            "turns": 4
+        }
+    }
+
+    // 注意：experimental.allowSubAgents 默认 false
+    // → 当前 DCP 只在主 session（glm-5.2）生效，子 agent session 不走 DCP
+    // → 上面的 glm-5-turbo/4.7 等 per-model 配置是 forward-compatible
+    //   将来若开启 allowSubAgents: true 即自动对所有子 agent 生效
+}
