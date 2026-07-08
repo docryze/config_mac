@@ -1,107 +1,110 @@
 {
-  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
-  "agents": {
+    "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+    "agents": {
+        "sisyphus": {
+            "model": "zhipuai-coding-plan/glm-5.2"
+        },
+        "oracle": {
+            "model": "zhipuai-coding-plan/glm-5-turbo"
+        },
+        "librarian": {
+            "model": "zhipuai-coding-plan/glm-4.5-air"
+        },
+        "explore": {
+            "model": "zhipuai-coding-plan/glm-4.5-air"
+        },
+        "multimodal-looker": {
+            "model": "zhipuai-coding-plan/glm-4.6v"
+        },
+        "prometheus": {
+            "model": "zhipuai-coding-plan/glm-5-turbo"
+        },
+        "hephaestus": {
+            "model": "zhipuai-coding-plan/glm-5-turbo"
+        },
+        "metis": {
+            "model": "zhipuai-coding-plan/glm-4.7"
+        },
+        "momus": {
+            "model": "zhipuai-coding-plan/glm-4.7"
+        },
+        "atlas": {
+            "model": "zhipuai-coding-plan/glm-4.5-air"
+        },
+        "sisyphus-junior": {
+            "model": "zhipuai-coding-plan/glm-4.5-air"
+        }
+    },
+    "categories": {
+        "visual-engineering": {
+            "model": "zhipuai-coding-plan/glm-4.6v"
+        },
+        "ultrabrain": {
+            "model": "zhipuai-coding-plan/glm-5.2"
+        },
+        "deep": {
+            "model": "zhipuai-coding-plan/glm-5-turbo"
+        },
+        "artistry": {
+            "model": "zhipuai-coding-plan/glm-4.7"
+        },
+        "quick": {
+            "model": "zhipuai-coding-plan/glm-4.5-air"
+        },
+        "unspecified-low": {
+            "model": "zhipuai-coding-plan/glm-4.5-air"
+        },
+        "unspecified-high": {
+            "model": "zhipuai-coding-plan/glm-5-turbo"
+        },
+        "writing": {
+            "model": "zhipuai-coding-plan/glm-4.7"
+        }
+    },
+    "tmux": {
+        "enabled": false,
+        "layout": "main-vertical",
+        "main_pane_size": 50,
+        "main_pane_min_width": 80,
+        "agent_pane_min_width": 60,
+        "isolation": "inline"
+    },
+    "team_mode": {
+        "enabled": true,
+        "max_parallel_members": 3,
+        "max_members": 5,
+        "max_messages_per_run": 10000,
+        "max_wall_clock_minutes": 180,
+        "max_member_turns": 500,
+        "message_payload_max_bytes": 32768,
+        "recipient_unread_max_bytes": 262144,
+        "mailbox_poll_interval_ms": 3000,
+        "tmux_visualization": true
+    },
+    "git_master": {
+        "commit_footer": false,
+        "include_co_authored_by": false,
+        "git_env_prefix": "GIT_MASTER=1"
+    },
+    "claude_code": {
+        "mcp": false,
+        "commands": false,
+        "skills": false,
+        "agents": false,
+        "hooks": false,
+        "plugins": false
+    },
+    "disabled_hooks": [
+        "session-notification",
+        "session-notification-sound",
+        "claude-code-hooks",
+        "anthropic-context-window-limit-recovery",
+        "comment-checker"
+    ],
     "sisyphus": {
-      "model": "zhipuai-coding-plan/glm-5.2"
-    },
-    "oracle": {
-      "model": "zhipuai-coding-plan/glm-5-turbo"
-    },
-    "librarian": {
-      "model": "zhipuai-coding-plan/glm-4.5-air"
-    },
-    "explore": {
-      "model": "zhipuai-coding-plan/glm-4.5-air"
-    },
-    "multimodal-looker": {
-      "model": "zhipuai-coding-plan/glm-4.6v"
-    },
-    "prometheus": {
-      "model": "zhipuai-coding-plan/glm-5-turbo"
-    },
-    "metis": {
-      "model": "zhipuai-coding-plan/glm-4.7"
-    },
-    "momus": {
-      "model": "zhipuai-coding-plan/glm-4.7"
-    },
-    "atlas": {
-      "model": "zhipuai-coding-plan/glm-4.5-air"
-    },
-    "sisyphus-junior": {
-      "model": "zhipuai-coding-plan/glm-4.5-air"
+        "tasks": {
+            "storage_path": ".omo/tasks",
+            "claude_code_compat": false
+        }
     }
-  },
-  "categories": {
-    "visual-engineering": {
-      "model": "zhipuai-coding-plan/glm-4.6v"
-    },
-    "ultrabrain": {
-      "model": "zhipuai-coding-plan/glm-5.2"
-    },
-    "deep": {
-      "model": "zhipuai-coding-plan/glm-5-turbo"
-    },
-    "artistry": {
-      "model": "zhipuai-coding-plan/glm-4.7"
-    },
-    "quick": {
-      "model": "zhipuai-coding-plan/glm-4.5-air"
-    },
-    "unspecified-low": {
-      "model": "zhipuai-coding-plan/glm-4.5-air"
-    },
-    "unspecified-high": {
-      "model": "zhipuai-coding-plan/glm-5-turbo"
-    },
-    "writing": {
-      "model": "zhipuai-coding-plan/glm-4.7"
-    }
-  },
-  "tmux": {
-    "enabled": false,
-    "layout": "main-vertical",
-    "main_pane_size": 50,
-    "main_pane_min_width": 80,
-    "agent_pane_min_width": 60,
-    "isolation": "inline"
-  },
-  "team_mode": {
-    "enabled": true,
-    "max_parallel_members": 3,
-    "max_members": 5,
-    "max_messages_per_run": 10000,
-    "max_wall_clock_minutes": 180,
-    "max_member_turns": 500,
-    "message_payload_max_bytes": 32768,
-    "recipient_unread_max_bytes": 262144,
-    "mailbox_poll_interval_ms": 3000,
-    "tmux_visualization": true
-  },
-  "git_master": {
-    "commit_footer": false,
-    "include_co_authored_by": false,
-    "git_env_prefix": "GIT_MASTER=1"
-  },
-  "claude_code": {
-    "mcp": false,
-    "commands": false,
-    "skills": false,
-    "agents": false,
-    "hooks": false,
-    "plugins": false
-  },
-  "disabled_hooks": [
-    "session-notification",
-    "session-notification-sound",
-    "claude-code-hooks",
-    "anthropic-context-window-limit-recovery",
-    "comment-checker"
-  ],
-  "sisyphus": {
-    "tasks": {
-      "storage_path": ".omo/tasks",
-      "claude_code_compat": false
-    }
-  }
 }
