@@ -1,77 +1,82 @@
 {
-  "$schema": "https://opencode.ai/config.json",
-  "autoupdate": true,
-  "autoshare": false,
-  "share": "disabled",
-  "watcher": {
-    "ignore": [
-      ".git/**",
-      "node_modules/**",
-      "dist/**",
-      "target/**",
-      "build/**"
-    ]
-  },
-  "permission": {
-    "read": {
-      "*": "allow",
-      "*.env": "deny",
-      "*.env.*": "deny",
-      "*.yml": "deny",
-      "*.properties": "deny",
-      "*.pem": "deny",
-      "*.key": "deny",
-      "*.p12": "deny",
-      "id_rsa": "deny",
-      "id_ed25519": "deny",
-      "*.pdf": "deny",
-      "*.zip": "deny",
-      "*.tar.gz": "deny",
-      "*keystore": "deny",
-      "*truststore": "deny"
+    "$schema": "https://opencode.ai/config.json",
+    "disabled_providers": [
+        "anthropic"
+    ],
+    "autoupdate": true,
+    "autoshare": false,
+    "share": "disabled",
+    "watcher": {
+        "ignore": [
+            ".git/**",
+            "node_modules/**",
+            "dist/**",
+            "target/**",
+            "build/**"
+        ]
     },
-    "glob": "allow",
-    "grep": "allow",
-    "list": "allow",
-    "todoread": "allow",
-    "question": "allow",
-    "webfetch": "allow",
-    "websearch": "allow",
-    "codesearch": "allow"
-  },
-  "plugin": [
-    "oh-my-openagent"
-  ],
-  "mcp": {
-    "zai-mcp-server": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@z_ai/mcp-server"
-      ],
-      "environment": {
-        "Z_AI_API_KEY": "{env:GLM_API_KEY}",
-        "Z_AI_MODE": "ZHIPU"
-      },
-      "timeout": 3600
+    "permission": {
+        "read": {
+            "*": "allow",
+            "*.env": "deny",
+            "*.env.*": "deny",
+            "*.pem": "deny",
+            "*.key": "deny",
+            "*.p12": "deny",
+            "id_rsa": "deny",
+            "id_ed25519": "deny",
+            "*.pdf": "deny",
+            "*.zip": "deny",
+            "*.tar.gz": "deny",
+            "*keystore": "deny",
+            "*truststore": "deny"
+        },
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "todoread": "allow",
+        "question": "allow",
+        "webfetch": "allow",
+        "websearch": "allow",
+        "codesearch": "allow"
     },
-    "mobile-mcp": {
-      "type": "local",
-      "command": [
-        "npx",
-        "@mobilenext/mobile-mcp@latest"
-      ],
-      "enabled": false
-    },
-    "pencil": {
-      "command": [
-        "/Applications/Pencil.app/Contents/Resources/app.asar.unpacked/out/mcp-server-darwin-x64",
-        "--app",
-        "desktop"
-      ],
-      "enabled": true,
-      "type": "local"
+    "plugin": [
+        "oh-my-openagent",
+        "@tarquinen/opencode-dcp@latest"
+    ],
+    "mcp": {
+        "zai-mcp-server": {
+            "type": "local",
+            "command": [
+                "npx",
+                "-y",
+                "@z_ai/mcp-server"
+            ],
+            "environment": {
+                "Z_AI_API_KEY": "{env:GLM_API_KEY}",
+                "Z_AI_MODE": "ZHIPU"
+            },
+            "timeout": 3600,
+            "enabled": false
+        },
+        "mobile-mcp": {
+            "type": "local",
+            "command": [
+                "npx",
+                "@mobilenext/mobile-mcp@latest"
+            ],
+            "enabled": false
+        },
+        "pencil": {
+            "command": [
+                "/Applications/Pencil.app/Contents/Resources/app.asar.unpacked/out/mcp-server-darwin-x64",
+                "--app",
+                "desktop",
+                "--agent",
+                "openCodeCLI"
+            ],
+            "enabled": false,
+            "type": "local"
+        }
     }
-  }
 }

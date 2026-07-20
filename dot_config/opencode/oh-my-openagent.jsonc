@@ -1,5 +1,20 @@
 {
     "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+    "claude_code": {
+        "mcp": false,
+        "commands": false,
+        "skills": false,
+        "agents": false,
+        "hooks": false,
+        "plugins": false
+    },
+    "disabled_hooks": [
+        "session-notification",
+        "session-notification-sound",
+        "claude-code-hooks",
+        "anthropic-context-window-limit-recovery",
+        "comment-checker"
+    ],
     "agents": {
         "sisyphus": {
             "model": "zhipuai-coding-plan/glm-5.2"
@@ -86,21 +101,6 @@
         "include_co_authored_by": false,
         "git_env_prefix": "GIT_MASTER=1"
     },
-    "claude_code": {
-        "mcp": false,
-        "commands": false,
-        "skills": false,
-        "agents": false,
-        "hooks": false,
-        "plugins": false
-    },
-    "disabled_hooks": [
-        "session-notification",
-        "session-notification-sound",
-        "claude-code-hooks",
-        "anthropic-context-window-limit-recovery",
-        "comment-checker"
-    ],
     "sisyphus": {
         "tasks": {
             "storage_path": ".omo/tasks",

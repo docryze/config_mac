@@ -17,7 +17,8 @@ Plug 'preservim/nerdcommenter'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 "Use release branch (recommend)
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'nvm use default'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'nvm use default'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "airline
 Plug 'vim-airline/vim-airline'
 "colorscheme
