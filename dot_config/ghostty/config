@@ -1,0 +1,50 @@
+# Ghostty config
+# 让 Option+Left / Option+Right 透传给 tmux，匹配其 M-Left / M-Right 绑定（切窗口）
+# 取消 Ghostty 默认把 alt+arrow 劫持成 ESC+b / ESC+f（readline 词移动）的行为
+#keybind = alt+arrow_left=unbind
+#keybind = alt+arrow_right=unbind
+
+# 可选：让 Option 键整体作为 Alt/Meta（与 iTerm2 的 "Option as Esc+" 一致）
+# 启用后 shell 里 Option+b/f 等也会生效，但 Option 不再输入 macOS 特殊字符
+# macos-option-as-alt = true
+
+# ---- 字体 ----
+# JetBrainsMono NFM（Nerd Font Mono，带图标），本机已安装
+font-family = JetBrainsMono NFM
+font-size = 14
+
+# 编程连字（JetBrains Mono 自带）：!= -> ≠ , => -> ⇒ 等
+font-feature = calt
+font-feature = liga
+
+# ---- 主题 ----
+theme = Gruvbox Dark
+
+# ---- tmux + AI 工作流优化 ----
+# tmux(resurrect/continuum)已持久化会话，关 Ghostty 安全 → 去掉关闭二次确认
+confirm-close-surface = false
+# tmux 自己管 pane 尺寸 → 关闭 Ghostty 的尺寸浮层
+resize-overlay = never
+# 输入 AI prompt 时隐藏鼠标
+mouse-hide-while-typing = true
+# AI 频繁重绘，用不闪烁的 bar 光标更稳
+cursor-style = bar
+cursor-style-blink = false
+# 略微留白，长时间阅读 AI/代码更舒适
+window-padding-x = 8
+window-padding-y = 8
+# 强制深色，配合 Gruvbox（避免系统切浅色时标题栏变白）
+window-theme = dark
+# SSH 远程福利：自动往远程装 ghostty terminfo + 传 COLORTERM
+#shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo,path
+
+# ---- 增强：新窗口自动进入 tmux 会话 work ----
+# 有 work 会话则 attach，无则创建（配合 continuum 持久化）
+#command = tmux new-session -A -s work
+
+# ---- 增强：快速终端（Quake 式下拉，全局热键 cmd+ctrl+g）----
+#keybind = global:super+ctrl+g=toggle_quick_terminal
+#quick-terminal-position = top
+#quick-terminal-size = 60%
+#quick-terminal-animation-duration = 0.15
+#quick-terminal-autohide = true
